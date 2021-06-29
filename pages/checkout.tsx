@@ -114,6 +114,8 @@ export default function Checkout(props) {
                                             {cart && (<input type="hidden" name="servidor" value={cart[0]?.server} readOnly />)}
                                             <input type="hidden" name="carrinho" value={JSON.stringify(Object.assign({}, cartCheckout))} readOnly />
                                             <input type="hidden" name="player" value={user?.name} readOnly />
+                                            <input type="hidden" name="returnURL" value="http://loja.nationmc.com.br" />
+                                            <input type="hidden" name="cancelURL" value="http://loja.nationmc.com.br" />
                                         </div>
                                         <header className={Styles.FormHeader}>
                                             <ul className={Styles.FormListGroup}>
