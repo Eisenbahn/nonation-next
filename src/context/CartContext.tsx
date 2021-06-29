@@ -73,8 +73,6 @@ export const CartContextProvider = ({ children }: CartContextProviderType) => {
 
         const productIndex = datas.findIndex(item => item.id === data.idproduto)
 
-        console.log(cart)
-
         if (productIndex === -1) {
             const product = {
                 id: data.idproduto,
@@ -89,8 +87,6 @@ export const CartContextProvider = ({ children }: CartContextProviderType) => {
 
             datas.push(product)
             setCart(datas)
-
-            console.log(typeof datas)
 
             return cookie.set('cart', JSON.stringify(datas))
         }
@@ -111,7 +107,8 @@ export const CartContextProvider = ({ children }: CartContextProviderType) => {
         datas.push(...cart)
 
         const productIndex = datas.findIndex((item: Cart) => item.id === data.id)
-        datas[productIndex].quantity = parseInt(quantity)
+        
+        if (productIndex > -1) datas[productIndex].quantity = parseInt(quantity)
 
         setCart(datas)
         return cookie.set('cart', JSON.stringify(datas))
@@ -125,7 +122,7 @@ export const CartContextProvider = ({ children }: CartContextProviderType) => {
         const datas = []
         datas.push(...cart)
 
-        const productIndex = datas.findIndex(item => item.id === data.id)
+        const productIndex = datas.findIndex(item => item.id === data.idproduto)
         datas.splice(productIndex, 1)
 
         setCart(datas)
