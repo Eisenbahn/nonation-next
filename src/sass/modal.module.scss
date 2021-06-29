@@ -1,0 +1,111 @@
+.Modal {
+    font: {
+        weight: var(--font-weight);
+        size: var(--font-size);
+        family: var(--font-sans);
+    }
+
+    &Overlay {
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        position: fixed;
+        top: 0; left: 0;
+        background-color: rgba(var(--color-black__rgb), 0.75);
+        z-index: 100;
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    &Button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        padding: var(--size-space-4x);
+        background-color: transparent;
+        color: var(--color-gray-8);
+        cursor: pointer;
+
+        &:hover { color: var(--color-gray-6) }
+    }
+
+    &Container {
+        width: 100%;
+        height: auto;
+        max-width: calc(var(--size-space-192x) * 2);
+        margin: var(--size-space-16x) var(--size-space-12x);
+        display: block;
+        border-radius: 8px;
+        position: absolute;
+        background-color: var(--color-gray-10);
+    }
+
+    &Header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: var(--size-space-16x) var(--size-space-12x);
+
+        &Title {
+            color: var(--color-gray-4);
+            font: {
+                weight: 600;
+                size: var(--size-space-10x)
+            }
+        }
+
+        &Button { @extend .ModalButton }
+    }
+
+    &Content {
+        min-height: 0;
+        display: block;
+        padding: var(--size-space-12x);
+        position: relative;
+        color: var(--color-gray-6);
+        font: {
+            weight: 400;
+        }
+    }
+
+    &Footer {
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 16px;
+        padding: var(--size-space-12x);
+
+        &Button {
+            border: 0;
+            color: var(--color-gray-4);
+            letter-spacing: 1px;
+            font: {
+                weight: 600;
+                size: var(--size-space-7x);
+                family: var(--font-sans);
+            }
+
+            &:hover { color: var(--color-gray-2) }
+
+            &Add {
+                border-radius: 4px;
+                padding: var(--size-space-8x) var(--size-space-10x);
+                background-color: var(--color-bg__button);
+                color: var(--color-white);
+                letter-spacing: 1px;
+                font: {
+                    weight: 600;
+                    size: var(--size-space-7x);
+                    family: var(--font-sans);
+                }
+
+                &:hover { 
+                    color: white;
+                    filter: brightness(70%);
+                }
+            }
+        }
+    }
+}
