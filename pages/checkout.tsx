@@ -35,6 +35,7 @@ export default function Checkout(props) {
     const { cart, updateQuantityCart, removeToCart, checkCoupon } = useContext(CartContext)
     const router = useRouter()
 
+    const [ isLoading, setLoading ] = useState(false)
     const [ cartCheckout, setCartCheckout ] = useState([])
 
     const [ termsCheckout, setTermsCheckout ] = useState(true)
@@ -322,8 +323,20 @@ export default function Checkout(props) {
                                         </div>
                                         <div className={Styles.FormSection}>
                                             <div className={Styles.FormSectionGroup}>
-                                                <button className={Styles.FormSectionGroupButton} type="submit" disabled={!termsCheckout ? true : false}>
-                                                    Finalizar pedido
+                                                <button
+                                                    className={Styles.FormSectionGroupButton}
+                                                    type="submit"
+                                                    onClick={() => {
+                                                        const form = document.querySelector(`.${Styles.Form}`) as HTMLFormElement
+                                                        form.submit()
+                                                        setLoading(true)
+                                                    }}
+                                                    disabled={!termsCheckout || isLoading ? true : false}>
+                                                    {!isLoading ? (
+                                                        <span>Finalizar pedido</span>
+                                                    ): (
+                                                        <div className={Styles.FormSectionGroupButtonSpinner}></div>
+                                                    )}
                                                 </button>
                                             </div>
                                         </div>

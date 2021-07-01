@@ -265,6 +265,7 @@
                 border-radius: 4px;
                 padding: var(--size-space-6x) var(--size-space-8x);
                 background-color: var(--color-green-default);
+                transition: all 300ms ease;
                 text: {
                     decoration: none;
                 }
@@ -282,6 +283,21 @@
 
                     &:hover {
                         background-color: var(--color-green-default);
+                    }
+                }
+
+                &Spinner {
+                    width: var(--size-space-9x);
+                    height: var(--size-space-9x);
+                    border: 3px solid rgba(var(--color-white__rgb), .35);
+                    border-top-color: rgba(var(--color-white__rgb), .9);
+                    border-radius: 9999px;
+                    position: relative;
+                    animation: spinner 300ms infinite linear;
+
+                    @keyframes spinner {
+                        from { transform: rotate(0deg) }
+                        from { transform: rotate(360deg) }
                     }
                 }
             }
