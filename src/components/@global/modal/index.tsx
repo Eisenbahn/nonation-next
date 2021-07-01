@@ -13,9 +13,10 @@ interface  ModalProps {
     title: string;
     isToggled: boolean;
     setToggle: React.SetStateAction<boolean>;
+    buttonClose?: boolean;
 }
 
-export const Modal = ({ children, title, isToggled, setToggle }) => {
+export const Modal = ({ children, title, isToggled, setToggle, buttonClose = true }) => {
     return (
         <AnimatePresence>
             { isToggled &&
@@ -41,27 +42,31 @@ export const Modal = ({ children, title, isToggled, setToggle }) => {
                             }}
                             className={Styles.ModalContainer}
                             >
-                            <header className={Styles.ModalHeader}>
+                            <header className={`${Styles.ModalHeader}${!buttonClose ? ` ${Styles.ModalHeaderCenter}`: ''}`}>
                                 <h3 className={Styles.ModalHeaderTitle}>{ title }</h3>
-                                <button
-                                    type="button"
-                                    className={`${Styles.ModalButton} ${Styles.ModalHeaderButton}`}
-                                    onClick={() => setToggle(false)}
+                                { buttonClose && (
+                                    <button
+                                        type="button"
+                                        className={`${Styles.ModalButton} ${Styles.ModalHeaderButton}`}
+                                        onClick={() => setToggle(false)}
                                     >
-                                    <X size={14} strokeWidth={4} />
-                                </button>
+                                        <X size={14} strokeWidth={4} />
+                                    </button>
+                                )}
                             </header>
                             <main className={Styles.ModalContent}>
                                 { children }
                             </main>
                             <footer className={Styles.ModalFooter}>
-                                <button
-                                    type="button"
-                                    className={`${Styles.ModalButton} ${Styles.ModalFooterButton}`}
-                                    onClick={() => setToggle(false)}
-                                >
-                                    Fechar
-                                </button>
+                                { buttonClose && (
+                                    <button
+                                        type="button"
+                                        className={`${Styles.ModalButton} ${Styles.ModalFooterButton}`}
+                                        onClick={() => setToggle(false)}
+                                    >
+                                        Fechar
+                                    </button>
+                                )}
                             </footer>
                         </motion.div>
                     </motion.div>

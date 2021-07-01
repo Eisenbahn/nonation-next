@@ -1,5 +1,5 @@
 /* ------| Servidor |------ */
-import { useContext, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { useRouter } from 'next/router'
 import { AuthContext } from '../src/context/AuthContext'
 import Link from 'next/link'
@@ -29,6 +29,14 @@ export default function Signin() {
 
     const router = useRouter()
 
+    useEffect(() => {
+        const { redirect } = router.query
+        if (user) {
+            (redirect)
+                ? window.location.href = redirect as string
+                : window.location.href = '/'
+        }
+    }, [ user ])
 
     return (
         <div className={Styles.Wrapper}>

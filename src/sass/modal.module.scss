@@ -48,6 +48,10 @@
         justify-content: space-between;
         padding: var(--size-space-16x) var(--size-space-12x);
 
+        &Center {
+            justify-content: center;
+        }
+
         &Title {
             color: var(--color-gray-4);
             font: {
